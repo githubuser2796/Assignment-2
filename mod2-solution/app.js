@@ -20,7 +20,7 @@ function ToBuyController(ShoppingListCheckOffService)
     {
       try
       {
-        ShoppingListCheckOffService.AddToBought(list1.itemName,list1.itemQuantity);
+        ShoppingListCheckOffService.AddToBought(list1.itemName,list1.itemQuantity.itemIndex);
       }
       catch(error)
       {
@@ -67,23 +67,25 @@ function ShoppingListCheckOffService()
 
   service.AddToBought = function (itemName,itemQuantity,itemIndex)
   {
-    var items = {
-      name : itemName,
-      quantity : itemQuantity
-    };
-    if(itemsToBuy.length != 0)
-    {
-      items.push(itemsBought);
-      items.splice(itemIndex,1)
-    }
-   else {
-      throw new Error("Everything is bought!");
-   }
+      var items = {
+        name : itemName,
+        quantity : itemQuantity
+      };
+      itemsBought.push(items);
+      itemsToBuy.splice(itemIndex,1);
+
   };
 
   service.getItemsToBuy = function()
   {
+    if(itemsToBuy.length != 0)
+    {
       return itemsToBuy;
+    }
+    else
+    {
+      throw new Error("Everything is bought!");
+    }
   };
 
   service.getItemsBought = function()
