@@ -39,18 +39,18 @@
           <button class="btn btn-default" ng-click="list1.AddToBought($index);"><span class="glyphicon glyphicon-ok"></span> Bought</button>
       </li>
      </ul>
-     <div class="emptyMessage" ng-if="list1.errorMessage">{{ list1.errorMessage }}</div>
+     <div class="emptyMessage" ng-if="list1.itemsToBuy.length == 0">Everything is Bought!</div>
     </div>
 
     <!-- Already Bought List -->
     <div class="col-md-6" ng-controller="AlreadyBoughtController as list2">
      <h2>Already Bought:</h2>
      <ul>
-       <li ng-repeat="item in list2.itemsBought">
-         Bought {{ item.quantity }} {{ item.name }}
+       <li ng-repeat="items in list2.itemsBought">
+         Bought {{ items.quantity }} {{ items.name }}
        </li>
      </ul>
-     <div class="emptyMessage" ng-if="list2.errorMessage">{{ list2.errorMessage }}</div>
+     <div class="emptyMessage" ng-if="list2.itemsBought.length == 0">Nothing bought yet!</div>
     </div>
   </div>
 </div>

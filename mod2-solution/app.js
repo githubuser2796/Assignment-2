@@ -18,14 +18,7 @@ function ToBuyController(ShoppingListCheckOffService)
 
     list1.AddToBought = function ()
     {
-      try
-      {
-        ShoppingListCheckOffService.AddToBought(list1.itemName,list1.itemQuantity.itemIndex);
-      }
-      catch(error)
-      {
-         list1.errorMessage = error.message;
-      }
+        ShoppingListCheckOffService.AddToBought(list1.itemName,list1.itemQuantity);
     }
 }
 
@@ -34,14 +27,8 @@ function AlreadyBoughtController(ShoppingListCheckOffService)
 {
   var list2 = this;
 
-  try
-  {
   list2.itemsBought = ShoppingListCheckOffService.getItemsBought();
-  }
-  catch(error)
-  {
-    list2.errorMessage = error.message;
-  }
+
 }
 
 
@@ -79,33 +66,19 @@ function ShoppingListCheckOffService()
         name : itemName,
         quantity : itemQuantity
       };
-      itemsBought.push(items);
       itemsToBuy.splice(itemIndex,1);
+      itemsBought.push(items);
 
   };
 
   service.getItemsToBuy = function()
   {
-    if(itemsToBuy.length != 0)
-    {
       return itemsToBuy;
-    }
-    else
-    {
-      throw new Error("Everything is bought!");
-    }
   };
 
   service.getItemsBought = function()
   {
-    if(itemsBought.length != 0)
-    {
         return itemsBought;
-    }
-    else
-    {
-      throw new Error("Nothing bought yet.");
-    }
 
   };
 
