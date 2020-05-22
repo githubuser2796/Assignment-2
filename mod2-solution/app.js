@@ -61,6 +61,14 @@ function ShoppingListCheckOffService()
     {
       name:"milk",
       quantity:"10 bottles"
+    },
+    {
+      name:"cold drinks",
+      quantity:"5 bottles"
+    },
+    {
+      name:"ketchup",
+      quantity:"2 bottles"
     }
   ];
   var itemsBought = [];
